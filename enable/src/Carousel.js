@@ -11,9 +11,6 @@ const ImageCarousel = () => {
         <img src="Enable.gif" alt="Image 1" />
       </div>
       <div>
-        <img src="logo.jpeg" alt="Image 2" />
-      </div>
-      <div>
         <img src="vision1.jpeg" alt="Image 3" />
       </div>
     </Carousel>
