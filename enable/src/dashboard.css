@@ -1,0 +1,89 @@
+.sidebar {
+    width: 200px; /* Set the width of the sidebar */
+  background-color: #333; /* Example background color */
+  color: #fff; /* Example text color */
+  height: 100vh; /* Cover the full viewport height */
+  position: fixed; /* Keep the sidebar fixed */
+  left: 0; /* Attach the sidebar to the left edge */
+  top: 52px; /* Attach the sidebar to the top edge */
+  padding: 20px; /* Add padding for spacing */
+  margin-right: 20px;
+  }
+  
+  /* Rest of your CSS... */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: red; /* Set the background color */
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: red; /* Set the background color */
+    color: white;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-auth-container {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px; /* Add spacing between navigation options */
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.auth-buttons button {
+    margin-left: 10px;
+}
+
+.page-content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.banner {
+  background-image: url("blob:https://web.whatsapp.com/a4b525e0-17a2-438b-b0b4-aa009d4f27ec");
+  background-size: contain; /* Fit the image within the container */
+  background-position: center;
+  height: 400px; /* Adjust the height of the banner */
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px; /* Add spacing between banner and content */
+  margin-left: 30px;
+  /* Add a border and padding for a visual effect */
+  
+
+  padding: 10px;
+  
+
+
+}
+
+.content-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Stack content vertically */
+  text-align: center;
+}

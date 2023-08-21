@@ -3,12 +3,13 @@ import {Link} from 'react-router-dom';
 import { register } from "./services/userService";
 import "./RegistrationForm.css";
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
     name: "",
-    employeeid: "",
-    employeetype: "",
+    empId: "",
+    empType: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -16,26 +17,44 @@ const RegistrationForm = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    let parsedValue = value;
+
+  if (name === 'empId') {
+    // Check if the value is a valid number
+    if (!isNaN(value) && value !== "") {
+      parsedValue = parseInt(value);
+    } else {
+      parsedValue = ""; // Clear the value if it's not a valid number
+    }
+  }
+  
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: parsedValue,
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     // Add your form submission logic here
-    console.log(formData);
+    try {
+      const response = await register(formData);
+      console.log(response); // This will log the response data from the backend
 
-    register(formData).then((resp) =>{
-      console.log(resp);
-      console.log("Successfully Registered");
-      toast.success("Registered Successfully !")
-    }).catch((error) => {
-      console.log(error);
-      console.log("Error ");
-    })
-    
+      // Handle success
+      toast.success(response);
+
+    } catch (error) {
+      console.error(error); // Log the error for debugging
+
+      // Handle error
+      if (error.response && error.response.data) {
+        const errorMessage = error.response.data;
+        toast.error(errorMessage);
+      } else {
+        toast.error("An error occurred during registration");
+      }
+    }
   };
 
   return (
@@ -52,24 +71,25 @@ const RegistrationForm = () => {
           required
         />
 
-        <label htmlFor="employeeid">Employee ID:</label>
+        <label htmlFor="empId">Employee ID:</label>
         <input
-          type="text"
-          id="employeeid"
-          name="employeeid"
-          value={formData.employeeid}
+          type="number"
+          id="empId"
+          name="empId"
+          value={formData.empId}
           onChange={handleInputChange}
           required
         />
 
-        <label htmlFor="employeetype">Employee Type:</label>
+        <label htmlFor="empType">Employee Type:</label>
         <select
-          id="employeetype"
-          name="employeetype"
-          value={formData.employeetype}
+          id="empType"
+          name="empType"
+          value={formData.empType}
           onChange={handleInputChange}
           required
         >
+        
           <option value="">Select an employee type</option>
           <option value="support">Support Staff</option>
           <option value="team">Team Member</option>

@@ -1,13 +1,13 @@
 package com.example.demo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+
+
+@Document(collection = "enableIncidents")
 public class EnableIncident {
 	
-	@Id
-	private int incidentId;
+	private int empId;
 	private String incidentTitle;
 	private String incidentDescription;
 	private String location;
@@ -15,11 +15,12 @@ public class EnableIncident {
 	private String category;
 	private String priority;
 	
-	public int getIncidentId() {
-		return incidentId;
+	
+	public int getEmpId() {
+		return empId;
 	}
-	public void setIncidentId(int incidentId) {
-		this.incidentId = incidentId;
+	public void setEmpId(int empId) {
+		this.empId = empId;
 	}
 	public String getIncidentTitle() {
 		return incidentTitle;
@@ -61,9 +62,9 @@ public class EnableIncident {
 	}
 	@Override
 	public String toString() {
-		return "EnableIncident [incidentTitle=" + incidentTitle + ", incidentDescription=" + incidentDescription
-				+ ", location=" + location + ", cubicle=" + cubicle + ", category=" + category + ", priority="
-				+ priority + "]";
+		return "EnableIncident [empId=" + empId + ", incidentTitle=" + incidentTitle + ", incidentDescription="
+				+ incidentDescription + ", location=" + location + ", cubicle=" + cubicle + ", category=" + category
+				+ ", priority=" + priority + "]";
 	}
 	
 	

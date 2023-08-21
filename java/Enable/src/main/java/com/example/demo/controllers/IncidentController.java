@@ -1,27 +1,27 @@
 package com.example.demo.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-
-//import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.EnableIncident;
-import com.example.demo.repositories.IncidentDao;
+import com.example.demo.repositories.IncidentMongoRepository;
 
-@RestController
 @CrossOrigin("*")
+@RestController
 public class IncidentController {
 	
-	//@Autowired
-	IncidentDao dao;
+	@Autowired
+	IncidentMongoRepository mongoRepository;
 
 	@PostMapping("/incident")
-	public  String incidentForm(@RequestBody EnableIncident i) {
-	dao.save(i);
+	public ResponseEntity<String> incidentForm(@RequestBody EnableIncident i) {
+	mongoRepository.save(i);
 	
-	return ("successfully incident submitted");
+	return ResponseEntity.status(HttpStatus.CREATED).body("Incident Details submitted successfully");
 	}
 }
