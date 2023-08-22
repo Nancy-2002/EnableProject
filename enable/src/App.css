@@ -12,13 +12,13 @@
 
 .navbar {
   width: 100%;
-  Height: 60px;
+  Height: fit-content;
   display:flex;
   flex-direction: row;
   position: inherit;
   background-color: #000000;
   color: white;
-  margin: auto;
+  margin: fit-content;
   padding-bottom :50px;
   padding-left: 30px;
 }

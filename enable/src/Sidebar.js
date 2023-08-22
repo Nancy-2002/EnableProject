@@ -8,7 +8,6 @@ function Sidebar() {
         <li><Link to="/employee/dashboard">Dashboard</Link></li>
         <li><Link to="/employee/incident_form">Report an Incident</Link></li>
         <li><Link to="/employee/incident_list">Incident List</Link></li>
-        <li><Link to="/employee/settings">Settings</Link></li>
       </ul>
       
     </div>
