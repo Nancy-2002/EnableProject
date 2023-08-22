@@ -1,8 +1,7 @@
 .background-container {
-    background-image: url(https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg); /* Set your background image path */
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
+        background-color: #807d7d; /* Adjust color and opacity */
+        min-height: 100vh;
+
 }
 /* Example styling for the header and navbar */
 .header {
@@ -26,7 +25,7 @@
 
 .form-container {
     max-width: 500px;
-    background-color: rgba(245, 245, 245, 0.9); /* Add transparency to the form background */
+    background-color: rgba(245, 245, 245, 0.5); /* Add transparency to the form background */
     padding: 30px;
     border-radius: 8px;
     margin: 0 auto;
@@ -38,8 +37,10 @@
     margin-bottom: 20px;
     font-size: 24px;
     font-weight: bold;
-    color: #333;
+    color: #0b0a0a;
 }
+
+
 
 .form-field {
     margin-bottom: 20px;
@@ -52,11 +53,26 @@ label {
     margin-bottom: 5px;
 }
 
+input[type="number"],select
+{
+    width: 100%;
+    padding: 10px;
+    margin: 0; /* Reset margin */
+    margin-bottom: 15px;
+    margin-left: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
 input[type="text"],
 textarea,
 select {
     width: 100%;
     padding: 10px;
+    margin: 0; /* Reset margin */
+    margin-bottom: 15px;
+    margin-left: 0;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
@@ -71,4 +87,7 @@ select {
     border-radius: 4px;
     display: block;
     margin: 0 auto;
+    text-align: center; /* Center the text horizontally */
+    line-height: 1; 
 }
+
