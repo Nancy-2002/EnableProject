@@ -69,6 +69,7 @@ const RegistrationForm = () => {
           value={formData.name}
           onChange={handleInputChange}
           required
+          class="input"
         />
 
         <label htmlFor="empId">Employee ID:</label>
@@ -79,6 +80,7 @@ const RegistrationForm = () => {
           value={formData.empId}
           onChange={handleInputChange}
           required
+          class="input"
         />
 
         <label htmlFor="empType">Employee Type:</label>
@@ -88,6 +90,7 @@ const RegistrationForm = () => {
           value={formData.empType}
           onChange={handleInputChange}
           required
+          class="dropdown"
         >
         
           <option value="">Select an employee type</option>
@@ -103,6 +106,7 @@ const RegistrationForm = () => {
           value={formData.email}
           onChange={handleInputChange}
           required
+          class="odd"
         />
 
         <label htmlFor="password">Password:</label>
@@ -113,6 +117,7 @@ const RegistrationForm = () => {
           value={formData.password}
           onChange={handleInputChange}
           required
+          class="odd"
         />
 
         <label htmlFor="confirmPassword">Confirm Password:</label>
@@ -123,6 +128,7 @@ const RegistrationForm = () => {
           value={formData.confirmPassword}
           onChange={handleInputChange}
           required
+          class="odd"
         />
 
         <button type="submit">Register</button>
@@ -131,7 +137,7 @@ const RegistrationForm = () => {
       <div className="App">
 
 
-<p>Already have an account? <Link to="/">Login here</Link></p>
+<p>Already have an account?&nbsp;&nbsp;&nbsp;&nbsp; <Link to="/">Login here</Link></p>
 
 
     </div>

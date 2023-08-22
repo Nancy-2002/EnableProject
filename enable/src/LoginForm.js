@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
+import './login.css';
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
@@ -25,7 +26,8 @@ const LoginForm = () => {
           <input
             type="text"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value) }
+            class="input"
           />
         </div>
         <div class="field">
@@ -34,10 +36,11 @@ const LoginForm = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            class="password"
           />
         </div>
         <button type="submit">SIGN IN</button>
-        <p>Don't have an account<Link to= "/register"> Register</Link></p>
+        <p>Don't have an account &nbsp;&nbsp;<Link to= "/register"> Register</Link></p>
       </form>
       <p>{message}</p>
     </div>
