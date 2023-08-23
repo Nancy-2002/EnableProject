@@ -1,0 +1,68 @@
+/* Style for the table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Style for clickable rows */
+tr.clickable {
+  cursor: pointer;
+}
+
+/* Style for incident details section */
+.incident-details {
+  background-color: #f9f9f9;
+  padding: 10px;
+  position: relative; /* Add this to make positioning of assign section relative */
+}
+/* Style for the assign staff section */
+
+.assign-staff {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center vertically */
+  position: absolute;
+  top: 50%; /* Move to the vertical center */
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center horizontally and vertically */
+  width: 80%;
+}
+
+/* ... Rest of the styles ... */
+
+.assign-staff label {
+  margin-bottom: 8px; /* Increase margin for more spacing */
+}
+
+.assign-staff select {
+  padding: 8px; /* Increase padding for dropdown */
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 8px; /* Increase margin for more spacing */
+  width: 100%; /* Set the width of the dropdown to 100% */
+}
+
+.assign-staff button {
+  padding: 3px 10px; /* Adjust padding for smaller button */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  align-items: center;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 80%; /* Reduce the width of the assign button */
+}
