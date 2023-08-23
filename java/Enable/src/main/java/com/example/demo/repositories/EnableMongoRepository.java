@@ -13,4 +13,5 @@ public interface EnableMongoRepository  extends MongoRepository<EnableAccount,In
 
 	boolean existsByEmail(String email);
 	boolean existsById(int empId);
+	boolean existsByEmailAndPassword(String email,String password);
 	}

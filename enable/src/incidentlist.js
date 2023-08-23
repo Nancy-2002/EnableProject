@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Sidebar from './Sidebar.js';
 import './incidentlist.css';
 import Navbar from './Navbar.js';
+import './App.css';
 
 const IncidentList = () => {
   const [incidents, setIncidents] = useState([
@@ -36,12 +37,9 @@ const IncidentList = () => {
 
   return (
    
-      
     <div className= "incident-list">
         <Navbar />
-      <div className= "sidebar">
       <Sidebar/>
-      </div>
       <h1>Incident List</h1>
       <table className="incident-table">
         <thead>

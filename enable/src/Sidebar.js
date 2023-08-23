@@ -1,15 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import Sidepanel from './Sidepanel';
 import './sidebar.css';
+import './App.css';
 function Sidebar() {
+  const [sidepanelOpen, setSidepanelOpen] = useState(false);
+
+  const openSidepanel = () => {
+    setSidepanelOpen(true);
+  };
+
+  const closeSidepanel = () => {
+    setSidepanelOpen(false);
+  };
+
   return (
-    <div className="sidebar">
-      <ul>
-        <li><Link to="/employee/dashboard">Dashboard</Link></li>
-        <li><Link to="/employee/incident_form">Report an Incident</Link></li>
-        <li><Link to="/employee/incident_list">Incident List</Link></li>
-      </ul>
-      
+    <div>
+      <Sidepanel isOpen={sidepanelOpen} onClose={closeSidepanel} />
+      <button className="openbtn" onClick={openSidepanel}>
+        ☰ 
+      </button>
     </div>
   );
 }

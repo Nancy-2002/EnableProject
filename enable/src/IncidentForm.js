@@ -4,6 +4,7 @@ import { submitIncident } from "./services/userService";
 import Navbar from './Navbar'; // Import the CSS file for styles
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './App.css'
 
 const IncidentForm= () =>{
     const[data, setFormData] = useState({
@@ -49,7 +50,7 @@ const IncidentForm= () =>{
           });
       };
         return (
-            <div className="background-container">
+            <div className="app-container">
               <Navbar />
             <div className="form-container">
                     <div className="form-title">Incident Request Form</div>

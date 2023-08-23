@@ -7,13 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.EnableAccount;
-
 import com.example.demo.repositories.EnableMongoRepository;
 
 @CrossOrigin("*")
@@ -24,10 +22,26 @@ public class EnableController {
 	
 	EnableMongoRepository mongoRepository;
 	
-	@GetMapping("/")
-	public String openAccount() {
-		return"<html><body><h1>Welcome to the Register page </h1></body></html>";
-	}
+	@CrossOrigin("*")
+	@PostMapping("/")
+	public ResponseEntity<String> login(@RequestBody EnableAccount ca) {
+	        String username = ca.getEmail();
+	        String password = ca.getPassword();
+
+	        // Add your logic to validate the login credentials
+	        // For example, you can check against a database or other authentication mechanisms
+
+	        boolean isValidCredentials = mongoRepository.existsByEmailAndPassword(username, password);
+
+	        if (isValidCredentials) {
+	            return ResponseEntity.ok("Login successful");
+	        } else {
+	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid login credentials");
+	        }
+
+	    }
+	    
+
 	@PostMapping("/register")
 	 public ResponseEntity<String> openAccount(@RequestBody EnableAccount ca) {
 		int empId = ca.getEmpId();

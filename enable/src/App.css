@@ -1,7 +1,11 @@
 .app-container {
   display: flex;
   flex-direction: column;
-  background-image:url(https://graphicriver.img.customer.envatousercontent.com/files/62172544/Communications+a+background590.jpg?auto=compress%2Cformat&fit=crop&crop=top&w=590&h=590&s=e0b2d5490fbb9405ab8f953380ff7947);
+  background: grey;
+  background-image: url("D:\ProjectEnable\enable\public\background.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .content-container {
@@ -12,19 +16,19 @@
 
 .navbar {
   width: 100%;
-  Height: fit-content;
-  display:flex;
+  height: 60px;
+  display: flex;
   flex-direction: row;
-  position: inherit;
-  background-color: #000000;
+  align-items: center;
+  background-color: black;
   color: white;
-  margin: fit-content;
-  padding-bottom :50px;
-  padding-left: 30px;
+  padding: 5px 5px;
 }
 
 .logo img {
-  max-width: 90px; /* Set the maximum width of the logo */
+  max-height: 65px;
+  margin-right: 0px;
+  margin-top: 50px;
 }
 
 .carousel {
@@ -36,66 +40,91 @@
 .login-form {
   width: 30%;
   height: 50%;
-  padding: 30px;
-  margin-top: 5%;
+  padding: 40px;
+  margin-top: 8%;
   display: flex;
   flex-direction: column;
-  color:white;
-  background-color: black;
-  background-blend-mode: darken;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: inset -5px -5px rgba(0, 0, 0, 0.5);
   border-radius: 25px;
+  color: white;
+}
+
+.login-form input {
+  margin: 10px 0;
+  width: 91%;
+  height: 20px;
+  padding: 5px 10px;
+  color: white;
+}
+
+.login-form h2 {
+  text-align: center;
+  color: white;
+}
+
+.login-form label {
+  color: white;
 }
 
 .navbar ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  display:flex;
+  display: flex;
   flex-direction: row;
-  position :absolute;
-  right: 150px;
+  position: absolute;
+  right: 20px;
   color: white;
 }
+
 .navbar li {
   margin-left: 30px;
-  margin-top: 15px;
   color: white;
-   /* Adjust this value to control the spacing */
 }
-a{
-  color:white;
+
+a {
+  color: white;
   text-decoration: none;
-  border-style:solid;
+  border-style: solid;
   border-color: white;
   border-width: 1px;
-  padding:5px 25px;
+  padding: 5px 20px;
   text-align: center;
   display: inline-block;
 }
-a:hover{
-  color: black;
+
+a:hover {
+  color: white;
   background-color: white;
 }
-.field{
-  display:flex;
+
+.field {
+  display: flex;
   flex-direction: column;
 }
-button{
+
+button {
   margin-left: 25%;
   background-color: green;
-  color:white;
+  border-radius:10px;
+  color: white;
   text-align: center;
-  margin-top:25px;
-  padding:10px;
-  width:50%;
-  border:none;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 50%;
+  border: none;
+}
 
+input {
+  margin: 10px 5px;
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
 }
-input{
-  margin: 20px;
-  width:auto;
-  height:25px;
-}
-h2{
+
+h2 {
   text-align: center;
 }

@@ -1,70 +1,80 @@
 .registration-form {
-    width: 600px;
-    margin: auto;
-    padding: 60px;
-    padding-right: 100px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: black;
-    color: white;
-  }
-  
-  .registration-form h1 {
-    margin-left: 25%;
-    margin-bottom: 50px;
-    margin-top: 0px;
-    text-emphasis: white;
-  }
-  
-  .registration-form label {
-    color: white;
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .registration-form select{
-    width: 103%;
-    padding: 15px;
-    margin: 20px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  .registration-form button {
-    display: block;
-    width: 60%;
-    padding: 20px;
-    margin-top: 20px;
-    border: solid;
-    background-color: black;
-    border-color: white;
-    color: white;
-    border-width: 1px;
-    border-radius: 1px;
-    cursor: pointer;
-  }
-  
-  .registration-form button:hover {
-    color: black;
-    background-color: whitesmoke;
-    border: double;
-    border-color: black;
-  }
-  .input{
-    margin-left: 25px;
-    margin-right: -70px;
-    padding-left: 250px;
-    width: 100px;
-  }
-  .odd{
-    margin-left: 0px;
-    width: 100%;
-  }
-  .dropdown{
-    margin-left: 0px;
-    margin: right 40px;
-    width: 20%;
-    height: 8px;
-  }
+  width: 500px;
+  margin: auto;
+  padding: 60px;
+  padding-right: 100px;
+  border: 1px solid #2e2c2c;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: inset -5px -5px rgba(238, 233, 233, 0.5);
+  color: white;
+}
+
+.registration-form h1 {
+  margin-left: 25%;
+  margin-bottom: 50px;
+  margin-top: 0px;
+  text-emphasis: white;
+}
+
+.registration-form label {
+  color: white;
+  display: block;
+  margin-bottom: 5px; /* Adjusted margin */
+  font-weight: bold;
+}
+
+.registration-form select,
+.registration-form input { /* Apply styles to both select and input */
+  width: 100%; /* Made all inputs and selects 100% width */
+  padding: 15px;
+  margin: 5px 0; /* Adjusted margin */
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  box-sizing: border-box; /* Include padding and border in the width */
+}
+
+.registration-form button {
+  display: block;
+  width: 50%;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: solid;
+  background-color: black;
+  border-color: white;
+  color: white;
+  border-width: 1px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.registration-form button:hover {
+  color: black;
+  background-color: whitesmoke;
+  border: double;
+  border-color: black;
+}
+
+.input {
+  margin-left: 25px;
+  margin-right: -70px;
+  padding-left: 200px;
+  width: 110px;
+  border-radius:25px
+}
+
+.odd {
+  margin-left: 0px;
+  margin-right: -70px;
+  padding-left: 250px;
+  width: 110%;
+}
+
+.dropdown {
+  margin-left: 0px;
+  margin: right 40px;
+  width: 20%;
+  height: 8px;
+}

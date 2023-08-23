@@ -61,27 +61,28 @@ const RegistrationForm = () => {
     <div className="registration-form">
       <h1>Registration Form</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleInputChange}
-          required
-          class="input"
-        />
+      <label htmlFor="name">Name:</label>
+<input
+  type="text"
+  id="name"
+  name="name"
+  value={formData.name}
+  onChange={handleInputChange}
+  required
+  className="input"  /* Use "className" instead of "class" */
+/>
 
-        <label htmlFor="empId">Employee ID:</label>
-        <input
-          type="number"
-          id="empId"
-          name="empId"
-          value={formData.empId}
-          onChange={handleInputChange}
-          required
-          class="input"
-        />
+<label htmlFor="empId">Employee ID:</label>
+<input
+  type="number"
+  id="empId"
+  name="empId"
+  value={formData.empId}
+  onChange={handleInputChange}
+  required
+  className="input"  /* Use "className" instead of "class" */
+/>
+
 
         <label htmlFor="empType">Employee Type:</label>
         <select

@@ -79,3 +79,6 @@
   flex-direction: column; /* Stack content vertically */
   text-align: center;
 }
+h1{
+  color: aliceblue;
+}
