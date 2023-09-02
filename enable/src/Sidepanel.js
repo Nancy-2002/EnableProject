@@ -9,9 +9,9 @@ function Sidepanel(props) {
         &times;
       </a>
       <ul>
-        <li><a><Link to="/employee/dashboard">Dashboard</Link></a></li>
+        <li><a><Link to="/employee/dashboard/:email">Dashboard</Link></a></li>
         <li><a><Link to="/employee/incident_form">Report an Incident</Link></a></li>
-        <li><a><Link to="/employee/incident_list">Incident List</Link></a></li>
+        <li><a><Link to="/employee/incident_list/:email">Incident List</Link></a></li>
       </ul>
       
     </div>

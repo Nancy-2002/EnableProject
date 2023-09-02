@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "enableIncidents")
 public class EnableIncident {
 	
-	private int empId;
+	private String email;
 	private String incidentTitle;
 	private String incidentDescription;
 	private String location;
@@ -16,11 +16,11 @@ public class EnableIncident {
 	private String priority;
 	
 	
-	public int getEmpId() {
-		return empId;
+	public String getEmail() {
+		return email;
 	}
-	public void setEmpId(int empId) {
-		this.empId = empId;
+	public void setEmpId(String email) {
+		this.email = email;
 	}
 	public String getIncidentTitle() {
 		return incidentTitle;
@@ -62,10 +62,12 @@ public class EnableIncident {
 	}
 	@Override
 	public String toString() {
-		return "EnableIncident [empId=" + empId + ", incidentTitle=" + incidentTitle + ", incidentDescription="
+		return "EnableIncident [email=" + email + ", incidentTitle=" + incidentTitle + ", incidentDescription="
 				+ incidentDescription + ", location=" + location + ", cubicle=" + cubicle + ", category=" + category
 				+ ", priority=" + priority + "]";
 	}
+	
+	
 	
 	
 	

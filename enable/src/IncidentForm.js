@@ -8,7 +8,7 @@ import './App.css'
 
 const IncidentForm= () =>{
     const[data, setFormData] = useState({
-        empId:"",
+        email:"",
         incidentTitle:"",
         incidentDescription:"",
         location:"",
@@ -16,23 +16,14 @@ const IncidentForm= () =>{
         category:"",
         priority:"",
     });
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        let parsedValue = value;
-    
-        if (name === 'empId') {
-          if (!isNaN(value) && value !== "") {
-            parsedValue = parseInt(value);
-          } else {
-            parsedValue = "";
-          }
-        }
-    
-        setFormData({
-          ...data,
-          [name]: parsedValue,
-        });
-      };
+    const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    };
+   
     
       const handleSubmit = (event) => {
         event.preventDefault();
@@ -42,6 +33,7 @@ const IncidentForm= () =>{
             console.log(resp);
             console.log("Submitted Successfully");
             toast.success("Submitted Successfully !");
+            window.location.href = '/employee/dashboard';
           })
           .catch((error) => {
             console.log(error);
@@ -55,12 +47,12 @@ const IncidentForm= () =>{
             <div className="form-container">
                     <div className="form-title">Incident Request Form</div>
                     <form onSubmit={handleSubmit}>
-                    <div htmlFor="empId">Employee ID:</div>
+                    <div htmlFor="email">Email ID:</div>
                         <input
-                            type="number"
-                            id="empId"
-                            name="empId"
-                            value={data.empId}
+                            type="text"
+                            id="email"
+                            name="email"
+                            value={data.email}
                             onChange={handleInputChange}
                             required
                         />

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import {Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { login } from './services/userService';
 import './login.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+
 const LoginForm = () => {
   const [loginData, setLoginData] = useState({
     email: "",
@@ -11,6 +14,8 @@ const LoginForm = () => {
   });
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,10 +23,18 @@ const LoginForm = () => {
     try {
       const response = await login(loginData); // Pass the loginData object directly
       console.log(response);
-
+      const userEmail = loginData.email;
+      console.log(userEmail);
       // Handle success
+      
+      //window.location.href = '/employee/dashboard/:email';
+      navigate('/employee/incident_list/:email', { state: { email: userEmail } });
+      //navigate('/employee/dashboard/:email', { state: { email: userEmail } });
+      
+
       toast.success(response);
       setIsLoggedIn(true);
+      
     } catch (error) {
       console.error(error);
       toast.error("An error occurred. Please try again.");
@@ -68,9 +81,6 @@ const LoginForm = () => {
           <Link to="/register">Register</Link>
         </p>
       </form>
-      <br />
-      <br/>
-      {isLoggedIn && <Link to="/employee/dashboard">Go to Dashboard</Link>}
     </div>
   );
 };

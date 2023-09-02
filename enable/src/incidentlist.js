@@ -1,85 +1,53 @@
-import React, { useState } from 'react';
-import Sidebar from './Sidebar.js';
-import './incidentlist.css';
-import Navbar from './Navbar.js';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { getIncidentList } from './services/userService';
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
 
-const IncidentList = () => {
-  const [incidents, setIncidents] = useState([
-    {
-      id: 1,
-      name: 'Incident 1',
-      description: 'Description of Incident 1',
-      date: '2023-08-16',
-      priority: 'High',
-      progress: 'In Progress',
-      isOpen: false, // Add isOpen property to track if description is open
-    },
-    {
-      id: 2,
-      name: 'Incident 2',
-      priority: 'Medium',
-      progress: 'In Progress',
-      date: '2023-08-16',
-      description: 'Description of Incident 2',
-    },
-    // Add more incidents as needed
-  ]);
+function IncidentList() {
+  const location = useLocation();
+  const [incidentData, setIncidentData] = useState([]);
+  const [error, setError] = useState(null);
 
-  const handleIncidentClick = (id) => {
-    const updatedIncidents = incidents.map((incident) =>
-      incident.id === id
-        ? { ...incident, isOpen: !incident.isOpen }
-        : { ...incident, isOpen: false }
-    );
-    setIncidents(updatedIncidents);
-  };
+  useEffect(() => {
+    //const email = "20cse065@gweca.com"; // Replace with the actual user email
+    const email = location.state && location.state.email;
+    getIncidentList(email)
+      .then((data) => {
+        setIncidentData(data); // Assuming data is an array of incidents
+      })
+      .catch((err) => {
+        // Handle any errors that occur during the request
+        setError(err);
+      });
+  }, []);
 
   return (
-   
-    <div className= "incident-list">
-        <Navbar />
-      <Sidebar/>
-      <h1>Incident List</h1>
-      <table className="incident-table">
-        <thead>
-          <tr>
-            <th>Serial Number</th>
-            <th>Incident Name</th>
-            <th>Date</th>
-            <th>Priority</th>
-            <th>Progress</th>
-          </tr>
-        </thead>
-        <tbody>
-          {incidents.map((incident, index) => (
-            <React.Fragment key={incident.id}>
-              <tr>
-                <td>{index + 1}</td>
-                <td onClick={() => handleIncidentClick(incident.id)} className="clickable-incident">
-                  {incident.name}
-                </td>
-                <td>{incident.date}</td>
-                <td>{incident.priority}</td>
-                <td>{incident.progress}</td>
-              </tr>
-              {incident.isOpen && (
-                <tr>
-                  <td colSpan="5">
-                    <div className="incident-description">
-                      <h2>{incident.name}</h2>
-                      <p>{incident.description}</p>
-                    </div>
-                  </td>
-                </tr>
-              )}
-            </React.Fragment>
+    <div>
+      <Navbar />
+      <Sidebar />
+      <h2>Incident List</h2>
+      {error ? (
+        <p>Error: {error.message}</p>
+      ) : incidentData.length > 0 ? (
+        <div>
+          {incidentData.map((incident) => (
+            <div key={incident.id}>
+              <p>Incident Title: {incident.incidentTitle}</p>
+              <p>Incident Description: {incident.incidentDescription}</p>
+              <p>Location: {incident.location}</p>
+              <p>Cubicle: {incident.cubicle}</p>
+              <p>Category: {incident.category}</p>
+              <p>Priority: {incident.priority}</p>
+              {/* Add more fields as needed */}
+            </div>
           ))}
-        </tbody>
-      </table>
-      
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
-};
+}
 
 export default IncidentList;
