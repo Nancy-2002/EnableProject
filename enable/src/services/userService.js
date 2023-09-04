@@ -22,3 +22,19 @@ export const getIncidentList = (email) => {
     .get(`http://localhost:8008/incidents/${email}`)
     .then((response) => response.data);
 };
+export const getAssignedIncident = (name) => {
+    return myAxios
+      .get(`http://localhost:8008/support/${name}`)
+      .then((response) => response.data);
+  };
+export const getIncidents = () => {
+    return myAxios
+      .get(`http://localhost:8008/support`)
+      .then((response) => response.data);
+  };
+  export const updateIncidents = (id,updatedData) => {
+    return myAxios
+      .patch(`http://localhost:8008/incidents/assign/${id}`,updatedData)
+      .then((response) => response.data);
+  };
+

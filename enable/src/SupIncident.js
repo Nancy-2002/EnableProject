@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import './SupIncident.css';
+import { getIncidents,updateIncidents } from './services/userService';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const initialIncidentsData = [
   {
@@ -188,8 +191,20 @@ const staffOptions = ['John Doe', 'Jane Smith', 'Michael Johnson', 'Gregory' , '
 const IncidentTable = () => {
   const [expandedIncidentId, setExpandedIncidentId] = useState(null);
   const [selectedStaff, setSelectedStaff] = useState('');
-  const [incidents, setIncidents] = useState(initialIncidentsData);
+  const [incidents, setIncidents] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState('All');
+
+  useEffect(() => {
+    // Fetch data from the backend when the component mounts
+    getIncidents()
+      .then((data) => {
+        // Update the state with the fetched data
+        setIncidents(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, [selectedStatus]);
 
   const toggleExpand = (incidentId) => {
     setExpandedIncidentId(expandedIncidentId === incidentId ? null : incidentId);
@@ -201,14 +216,36 @@ const IncidentTable = () => {
 
   const assignStaff = (incidentId) => {
     if (selectedStaff) {
-      const updatedIncidents = incidents.map((incident) => {
-        if (incident.id === incidentId && incident.status === 'Open') {
-          return { ...incident, assignedStaff: selectedStaff, status: 'In Progress' };
-        }
-        return incident;
-      });
-      setIncidents(updatedIncidents);
-      setSelectedStaff('');
+      // Create an object with the updated data
+      const updatedData = {
+        assignedTo: selectedStaff,
+        status:"In Progress",
+      };
+
+      // Call the updateIncidents function with the incident ID and updated data
+      updateIncidents(incidentId, updatedData)
+        .then((response) => {
+          // Check if the update was successful
+          if (response === 'Incident updated successfully') {
+            // Update the state to reflect the new assigned staff
+            const updatedIncidents = incidents.map((incident) => {
+              if (incident.id === incidentId && incident.status === 'Open') {
+                return { ...incident, assignedTo: selectedStaff, status: 'In Progress' };
+              }
+              return incident;
+            });
+            setIncidents(updatedIncidents);
+            setSelectedStaff('');
+            toast.success('Staff Assigned Successfully');
+          } else {
+            // Handle error if needed
+            console.error('Error updating incident:', response);
+          }
+        })
+        .catch((error) => {
+          console.error('Error updating incident:', error);
+          toast.error('Error updating incident. Please try again.');
+        });
     }
   };
   
@@ -223,13 +260,13 @@ const IncidentTable = () => {
       return priorityComparison;
     }
 
-    const statusComparison = b.status.localeCompare(a.status);
+    const statusComparison = (b.status || '').localeCompare(a.status || '');
   if (statusComparison !== 0) {
     return statusComparison;
   }
 
     // If priorities are the same, compare by date created (ascending order)
-    return new Date(a.dateCreated) - new Date(b.dateCreated);
+    return new Date(a.dateOfIncident) - new Date(b.dateOfIncident);
   });
 
   const IncidentFilter = ({ selectedStatus, setSelectedStatus }) => {
@@ -264,23 +301,23 @@ const IncidentTable = () => {
         {sortedIncidents.map((incident) => (
           <React.Fragment key={incident.id}>
             <tr onClick={() => toggleExpand(incident.id)}>
-              <td>{incident.title}</td>
+              <td>{incident.incidentTitle}</td>
               <td>{incident.status}</td>
-              <td>{incident.dateCreated}</td>
+              <td>{incident.dateOfIncident}</td>
               <td>
                 <span className={`priority-indicator ${incident.priority.toLowerCase()}`}>
                   {incident.priority}
                 </span>
               </td>
-              <td>{incident.assignedStaff || 'Not Assigned'}</td>
+              <td>{incident.assignedTo || 'Not Assigned'}</td>
             </tr>
             {expandedIncidentId === incident.id && (
               <tr className="expanded-row">
                 <td colSpan="5">
                   <div className="incident-details">
-                    <p><b>Reporter: </b>{incident.reporter}</p>
-                    <p><b>Date Created: </b>{incident.reporterDate}</p>
-                    <p><b>Description: </b>{incident.description}</p>
+                    <p><b>Reporter: </b>{incident.assignedTo}</p>
+                    <p><b>Date Created: </b>{incident.dateOfIncident}</p>
+                    <p><b>Description: </b>{incident.incidentDescription}</p>
                     {incident.status === 'Open' && (
                       <div className="assign-section">
                         <label className="assign-label">Assign To:</label>
@@ -297,7 +334,7 @@ const IncidentTable = () => {
                     )}
                     {incident.status === 'Closed' && (
                         <div className="resolution-section">
-                          <p><b>Resolution: </b>{incident.resolution}</p>
+                          <p><b>Resolution: </b>{incident.resolutionDescription}</p>
                           <p><b>Resolution Date: </b>{incident.resolutionDate}</p>
                         </div>
                       )}

@@ -1,4 +1,4 @@
-.app-container {
+app-container {
   display: flex;
   flex-direction: column;
   background: grey;
@@ -34,6 +34,15 @@
   
 }
 
+
+.dropdown {
+  margin-left: 0px;
+  margin: right 40px;
+  width: 100%;
+  height: 65%;
+  
+}
+
 .carousel {
   padding: 50px;
   width: 70%;
@@ -42,7 +51,7 @@
 
 .login-form {
   width: 30%;
-  height: 30%;
+  height: 70%;
   padding: 40px;
   margin-top: 8%;
   display: flex;
@@ -107,6 +116,8 @@ a:hover {
   display: flex;
   flex-direction: column;
 }
+
+
 
 button {
   margin-left: 25%;

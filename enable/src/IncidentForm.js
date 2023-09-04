@@ -15,6 +15,7 @@ const IncidentForm= () =>{
         cubicle:"",
         category:"",
         priority:"",
+        status:"Open",
     });
     const handleInputChange = (e) => {
       const { name, value } = e.target;
@@ -33,7 +34,7 @@ const IncidentForm= () =>{
             console.log(resp);
             console.log("Submitted Successfully");
             toast.success("Submitted Successfully !");
-            window.location.href = '/employee/dashboard';
+            window.location.href = '/employee/dashboard/:email';
           })
           .catch((error) => {
             console.log(error);

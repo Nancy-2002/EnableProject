@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { getIncidentList } from './services/userService';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
+import './incidentlist.css';
 
 function IncidentList() {
   const location = useLocation();
@@ -10,17 +11,20 @@ function IncidentList() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    //const email = "20cse065@gweca.com"; // Replace with the actual user email
-    const email = location.state && location.state.email;
-    getIncidentList(email)
-      .then((data) => {
-        setIncidentData(data); // Assuming data is an array of incidents
-      })
-      .catch((err) => {
-        // Handle any errors that occur during the request
+    const fetchIncidentData = async () => {
+      try {
+        const email = "Tejal2222@gmail.com";
+        if (email) {
+          const data = await getIncidentList(email);
+          setIncidentData(data);
+        }
+      } catch (err) {
         setError(err);
-      });
-  }, []);
+      }
+    };
+
+    fetchIncidentData();
+  }, [location.state]);
 
   return (
     <div>
@@ -29,25 +33,34 @@ function IncidentList() {
       <h2>Incident List</h2>
       {error ? (
         <p>Error: {error.message}</p>
-      ) : incidentData.length > 0 ? (
-        <div>
-          {incidentData.map((incident) => (
-            <div key={incident.id}>
-              <p>Incident Title: {incident.incidentTitle}</p>
-              <p>Incident Description: {incident.incidentDescription}</p>
-              <p>Location: {incident.location}</p>
-              <p>Cubicle: {incident.cubicle}</p>
-              <p>Category: {incident.category}</p>
-              <p>Priority: {incident.priority}</p>
-              {/* Add more fields as needed */}
-            </div>
-          ))}
-        </div>
       ) : (
-        <p>Loading...</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Incident Title</th>
+              <th>Incident Description</th>
+              <th>Location</th>
+              <th>Cubicle</th>
+              <th>Category</th>
+              <th>Priority</th>
+            </tr>
+          </thead>
+          <tbody>
+            {incidentData.map((incident) => (
+              <tr key={incident.id}>
+                <td>{incident.incidentTitle}</td>
+                <td>{incident.incidentDescription}</td>
+                <td>{incident.location}</td>
+                <td>{incident.cubicle}</td>
+                <td>{incident.category}</td>
+                <td>{incident.priority}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );
 }
 
-export default IncidentList;
+export default IncidentList

@@ -28,7 +28,7 @@ const SupDash = () => {
   return (
     <div className="app-container">
         <div className='button'>
-            <Link to="/support/incident_assignment">Incident Assignment</Link>
+            <Link to="/admin/incident_assignment">Incident Assignment</Link>
         </div>
       <div className="circle-row">
         {incidents.map((incident, index) => (

@@ -43,6 +43,7 @@ const RegistrationForm = () => {
 
       // Handle success
       toast.success(response);
+      window.location.href = '/';
 
     } catch (error) {
       console.error(error); // Log the error for debugging
@@ -97,6 +98,7 @@ const RegistrationForm = () => {
           <option value="">Select an employee type</option>
           <option value="support">Support Staff</option>
           <option value="team">Team Member</option>
+          <option value="admin">Admin</option>
         </select>
 
         <label htmlFor="email">Email:</label>

@@ -25,15 +25,17 @@ public class EnableController {
 	@CrossOrigin("*")
 	@PostMapping("/")
 	public ResponseEntity<String> login(@RequestBody EnableAccount ca) {
+		System.out.println("Received request with email: " + ca.getEmail());
 	        String username = ca.getEmail();
 	        String password = ca.getPassword();
-
+	        String empType = ca.getEmpType();
 	        // Add your logic to validate the login credentials
 	        // For example, you can check against a database or other authentication mechanisms
 
 	        boolean isValidCredentials = mongoRepository.existsByEmailAndPassword(username, password);
+	        boolean isValidEmp = mongoRepository.existsByEmailAndEmpType(username,empType);
 
-	        if (isValidCredentials) {
+	        if (isValidCredentials && isValidEmp) {
 	            return ResponseEntity.ok("Login successful");
 	        } else {
 	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid login credentials");

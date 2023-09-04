@@ -1,12 +1,14 @@
 package com.example.demo;
 
+import java.util.Date;
+
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-
-
 @Document(collection = "enableIncidents")
 public class EnableIncident {
 	
+	@Id
+	private static int id=0;
 	private String email;
 	private String incidentTitle;
 	private String incidentDescription;
@@ -14,8 +16,19 @@ public class EnableIncident {
 	private String cubicle;
 	private String category;
 	private String priority;
+	private String assignedTo;
+	private String status;
+	private String resolutionDescription;
+	private Date resolutionDate;
+	private Date dateOfIncident;
 	
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = ++id;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -60,11 +73,47 @@ public class EnableIncident {
 	public void setPriority(String priority) {
 		this.priority = priority;
 	}
+	
+	public String getAssignedTo() {
+		return assignedTo;
+	}
+	public void setAssignedTo(String assignedTo) {
+		this.assignedTo = assignedTo;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getResolutionDescription() {
+		return resolutionDescription;
+	}
+	public void setResolutionDescription(String resolutionDescription) {
+		this.resolutionDescription = resolutionDescription;
+	}
+	public Date getResolutionDate() {
+		return resolutionDate;
+	}
+	public void setResolutionDate(Date resolutionDate) {
+		this.resolutionDate = resolutionDate;
+	}
+	public Date getDateOfIncident() {
+		return dateOfIncident;
+	}
+	public void setDateOfIncident(Date dateOfIncident) {
+		this.dateOfIncident = dateOfIncident;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	@Override
 	public String toString() {
-		return "EnableIncident [email=" + email + ", incidentTitle=" + incidentTitle + ", incidentDescription="
-				+ incidentDescription + ", location=" + location + ", cubicle=" + cubicle + ", category=" + category
-				+ ", priority=" + priority + "]";
+		return "EnableIncident [id=" + id + ", email=" + email + ", incidentTitle=" + incidentTitle
+				+ ", incidentDescription=" + incidentDescription + ", location=" + location + ", cubicle=" + cubicle
+				+ ", category=" + category + ", priority=" + priority + ", assignedTo=" + assignedTo + ", status="
+				+ status + ", resolutionDescription=" + resolutionDescription + ", resolutionDate=" + resolutionDate
+				+ ", dateOfIncident=" + dateOfIncident + "]";
 	}
 	
 	
