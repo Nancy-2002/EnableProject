@@ -7,8 +7,7 @@ import './App.css';
 import { useLocation } from 'react-router-dom';
 
 function Dashboard() {
-  const location = useLocation();
-  const email = location.state && location.state.email;
+  const email = localStorage.getItem('email');
 
   console.log(email);//parameters from login form
   return (

@@ -37,4 +37,14 @@ export const getIncidents = () => {
       .patch(`http://localhost:8008/incidents/assign/${id}`,updatedData)
       .then((response) => response.data);
   };
+  export const getname = (email) => {
+    return myAxios
+      .get(`http://localhost:8008/Empname/${email}`)
+      .then((response) => response.data);
+  };
+  export const getsupport = () => {
+    return myAxios
+      .get(`http://localhost:8008/admin/getsupport`)
+      .then((response) => response.data);
+  };
 

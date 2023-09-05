@@ -13,7 +13,7 @@ function IncidentList() {
   useEffect(() => {
     const fetchIncidentData = async () => {
       try {
-        const email = "Tejal2222@gmail.com";
+        const email = localStorage.getItem('email')
         if (email) {
           const data = await getIncidentList(email);
           setIncidentData(data);

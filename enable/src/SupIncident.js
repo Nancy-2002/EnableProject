@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import './SupIncident.css';
-import { getIncidents,updateIncidents } from './services/userService';
+import { getIncidents,updateIncidents,getsupport } from './services/userService';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -185,13 +185,12 @@ const initialIncidentsData = [
   // Add more incidents here...
 ];
 
-const staffOptions = ['John Doe', 'Jane Smith', 'Michael Johnson', 'Gregory' , 'Benjamin', 'Chloe', 'Eleanor','Jessica',
-'Daniel', 'William',/* ... */];
 
 const IncidentTable = () => {
   const [expandedIncidentId, setExpandedIncidentId] = useState(null);
   const [selectedStaff, setSelectedStaff] = useState('');
   const [incidents, setIncidents] = useState([]);
+  const [staffOptions,setStaffOptions]= useState([]);
   const [selectedStatus, setSelectedStatus] = useState('All');
 
   useEffect(() => {
@@ -204,7 +203,17 @@ const IncidentTable = () => {
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
+
+      getsupport()
+      .then((data) => {
+        // Update the state with the fetched data
+        setStaffOptions(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
   }, [selectedStatus]);
+  console.log(staffOptions);
 
   const toggleExpand = (incidentId) => {
     setExpandedIncidentId(expandedIncidentId === incidentId ? null : incidentId);

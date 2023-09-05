@@ -50,6 +50,7 @@ const LoginForm = () => {
 
     toast.success(response);
     setIsLoggedIn(true);
+    localStorage.setItem('email',loginData.email)
   } catch (error) {
     console.error(error);
     toast.error('Invalid Credentials');

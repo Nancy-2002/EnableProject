@@ -7,8 +7,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.css'
 
 const IncidentForm= () =>{
+    const email = localStorage.getItem('email')
     const[data, setFormData] = useState({
-        email:"",
+        email:email,
         incidentTitle:"",
         incidentDescription:"",
         location:"",

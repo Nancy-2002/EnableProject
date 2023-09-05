@@ -1,12 +1,10 @@
 package com.example.demo;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "enableAccounts")
 public class EnableAccount {
 	
-	@Id
 	private int empId;
 	private String empType;
 	private String name;

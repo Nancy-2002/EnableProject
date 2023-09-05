@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAssignedIncident } from './services/userService';
+import { getAssignedIncident, getname } from './services/userService';
 import Axios from 'axios';
 import Navbar from './Navbar';
 import './EmpIncident.css';
@@ -200,17 +200,26 @@ const IncidentTable = () => {
   const [selectedStatus, setSelectedStatus] = useState('All');
   const [resolutionDescription, setResolutionDescription] = useState('');
   const [resolutionDate, setResolutionDate] = useState('');
+  const [userName, setUserName] = useState('');
 
   useEffect(() => {
     // Fetch data from the backend when the component mounts
-    getAssignedIncident("Nancy")
-      .then((data) => {
-        // Update the state with the fetched data
+    const email = localStorage.getItem('email')
+    console.log(email);
+    async function fetchData() {
+      try {
+        const name = await getname(email);
+        console.log(name);
+        setUserName(name);
+
+        const data = await getAssignedIncident(name);
         setIncidents(data);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error('Error fetching data:', error);
-      });
+      }
+    }
+
+    fetchData();
   }, [selectedStatus]);
 
 
@@ -256,7 +265,7 @@ const IncidentTable = () => {
     updateIncident(incidentId, updatedIncidentData);
 
     const updatedIncidents = incidents.map((incident) => {
-      if (incident.id === incidentId && incident.status === 'Open') {
+      if (incident.id === incidentId && incident.status === 'In Progress') {
         return {
           ...incident,
           status: 'Closed',
@@ -361,7 +370,7 @@ const IncidentTable = () => {
                         <b>Description: </b>
                         {incident.incidentDescription}
                       </p>
-                      {incident.status === 'Open' && (
+                      {incident.status === 'In Progress' && (
                         <div className="complete-section">
                           <label>
                             <strong>Resolution: </strong>
