@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -84,7 +85,7 @@ public class IncidentController {
         
         return ResponseEntity.ok(incidents);
     }
-	@PatchMapping("/incidents/assign/{id}")
+	@PutMapping("/incidents/assign/{id}")
 	public ResponseEntity<String> AssignById(@PathVariable int id, @RequestBody EnableIncident i) {
 	    // First, check if an incident with the given ID exists in the repository
 	    Optional<EnableIncident> existingIncidentOptional = mongoRepository.findById(id);

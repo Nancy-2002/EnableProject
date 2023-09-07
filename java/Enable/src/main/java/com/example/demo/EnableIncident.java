@@ -1,14 +1,20 @@
 package com.example.demo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-@Document(collection = "enableIncidents")
-public class EnableIncident {
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class EnableIncident implements Serializable{
 	
 	@Id
-	private static int id=0;
+	private long id;
 	private String email;
 	private String incidentTitle;
 	private String incidentDescription;
@@ -22,12 +28,11 @@ public class EnableIncident {
 	private Date resolutionDate;
 	private Date dateOfIncident;
 	
-	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = ++id;
+	public void setId(long id) {
+		this.id = id;
 	}
 	public String getEmail() {
 		return email;

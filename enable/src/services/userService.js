@@ -34,7 +34,7 @@ export const getIncidents = () => {
   };
   export const updateIncidents = (id,updatedData) => {
     return myAxios
-      .patch(`http://localhost:8008/incidents/assign/${id}`,updatedData)
+      .put(`http://localhost:8008/incidents/assign/${id}`,updatedData)
       .then((response) => response.data);
   };
   export const getname = (email) => {

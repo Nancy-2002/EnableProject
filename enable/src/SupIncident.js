@@ -203,6 +203,7 @@ const IncidentTable = () => {
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
+      
 
       getsupport()
       .then((data) => {
