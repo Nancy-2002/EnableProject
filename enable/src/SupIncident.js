@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from './Navbar';
+import Navbar from './Navbar.tsx';
 import './SupIncident.css';
 import { getIncidents,updateIncidents,getsupport } from './services/userService';
 import { toast } from 'react-toastify';

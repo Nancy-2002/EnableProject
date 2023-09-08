@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAssignedIncident, getname } from './services/userService';
 import Axios from 'axios';
-import Navbar from './Navbar';
+import Navbar from './Navbar.tsx';
 import './EmpIncident.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -406,7 +406,7 @@ const IncidentTable = () => {
 
 const Incident = () => {
   return (
-    <div>
+    <div className='navbar'>
       <Navbar />
       <div className="container">
         <h1 className="page-heading">Reported Incidents</h1>

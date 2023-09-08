@@ -62,9 +62,10 @@
     color: white;
   }
   .button{
+    color: black;
     display: flex;
     position: relative;
-    margin-top: 0px;
+    margin-top: 10px;
     margin-right: 1100px;
     margin-bottom: 50px;
   }

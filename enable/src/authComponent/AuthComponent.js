@@ -9,8 +9,12 @@ import IncidentList from "../incidentlist";
 import SupDash from "../SupDash";
 import IncidentDetails from "../SupIncident";
 import Incident from "../EmpIncident";
+import PageNotFound from "../Error";
 
 export const AuthComponent = () => {
+
+    const role = localStorage.getItem('role')
+    
     
         return(
             <>
@@ -18,12 +22,12 @@ export const AuthComponent = () => {
                 <Routes>
                     <Route exact path ="/" element={<LoginPage/>}/>
                     <Route exact path ="/register" element={<RegistrationPage/>}/>
-                    <Route exact path="/employee/incident_form" element={<IncidentForm/>}/>
-                    <Route exact path="/employee/dashboard/:email" element={<Dashboard/>}/>
-                    <Route exact path="/employee/incident_list/:email" element={<IncidentList/>}/>
-                    <Route exact path="/admin/dashboard" element={<SupDash/>}/>
-                    <Route exact path="/admin/incident_assignment" element={<IncidentDetails/>}/>
-                    <Route exact path="/support/incident" element={<Incident/>}/>
+                    <Route exact path="/employee/incident_form" element={role ==='team'?<IncidentForm/>:<PageNotFound/>}/>
+                    <Route exact path="/employee/dashboard/:email" element={role ==='team'?<Dashboard/>:<PageNotFound/>}/>
+                    <Route exact path="/employee/incident_list/:email" element={role ==='team'?<IncidentList/>:<PageNotFound/>}/>
+                    <Route exact path="/admin/dashboard" element={role ==='admin'?<SupDash/>:<PageNotFound/>}/>
+                    <Route exact path="/admin/incident_assignment" element={role ==='admin'?<IncidentDetails/>:<PageNotFound/>}/>
+                    <Route exact path="/support/incident" element={role ==='support'?<Incident/>:<PageNotFound/>}/>
                 </Routes>  
             </>    
         )

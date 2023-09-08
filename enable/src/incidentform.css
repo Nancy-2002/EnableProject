@@ -1,12 +1,3 @@
-.background-container {
-    background-color: #807d7d; /* Adjust color and opacity */
-    min-height: 100vh;
-    background-image: url("D:\ProjectEnable\enable\public\background.jpeg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-
-}
 /* Example styling for the header and navbar */
 .header {
 display: flex;
@@ -31,6 +22,7 @@ margin-left: 10px;
 .form-container {
 width: 500px;
 margin: auto;
+margin-top: 20px;
 padding: 60px;
 padding-right: 100px;
 border: 1px solid #2e2c2c;

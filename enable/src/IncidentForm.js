@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import './incidentform.css';
 import { submitIncident } from "./services/userService";
-import Navbar from './Navbar'; // Import the CSS file for styles
+import Navbar from './Navbar.tsx'; // Import the CSS file for styles
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './App.css'
 
 const IncidentForm= () =>{
     const email = localStorage.getItem('email')
@@ -44,20 +43,11 @@ const IncidentForm= () =>{
           });
       };
         return (
-            <div className="app-container">
+            <div>
               <Navbar />
             <div className="form-container">
                     <div className="form-title">Incident Request Form</div>
                     <form onSubmit={handleSubmit}>
-                    <div htmlFor="email">Email ID:</div>
-                        <input
-                            type="text"
-                            id="email"
-                            name="email"
-                            value={data.email}
-                            onChange={handleInputChange}
-                            required
-                        />
                         <div className="form-field">
                             <label htmlFor="incidentTitle">Incident Title:</label>
                             <input type="text" id="incidentTitle" name="incidentTitle" value={data.incidentTitle} onChange={handleInputChange} required />

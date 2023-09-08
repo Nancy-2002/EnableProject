@@ -1,39 +1,8 @@
-app-container {
-  display: flex;
-  flex-direction: column;
-  background: grey;
-  background-image: url("D:\ProjectEnable\enable\public\background.jpeg"); /* Path to your image from the public folder */
-  background-size: cover; /* Adjust the background size as needed */
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
 .content-container {
   display: flex;
   flex-direction: row;
   padding: 20px;
 }
-
-.navbar {
-  width: 99%;
-  height: 55px; /* Set navbar height */
-  display: flex;
-  flex-direction: row;
-  align-items: center; /* Align items vertically in the center */
-  background-color: black;
-  color: white;
-  padding: 5px 5px 5px 5px;
-  margin-right: 5%;
-  margin-bottom: 30px; /* Added horizontal padding */
-}
-
-.logo img {
-  max-height: 65px; /* Set logo height to match navbar height */
-  margin-right: 0%; /* Added margin to the right for spacing */
-  margin: top 30px;
-  
-}
-
 
 .dropdown {
   margin-left: 0px;
@@ -57,7 +26,7 @@ app-container {
   display: flex;
   flex-direction: column;
   margin: auto;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: black(0, 0, 0, 0.2);
   box-shadow: inset -5px -5px rgba(190, 177, 177, 0.5);
   border-radius: 25px;
   color: white; /* Set font color to white */

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getIncidentList } from './services/userService';
-import Navbar from './Navbar';
+import Navbar from './Navbar.tsx';
 import Sidebar from './Sidebar';
 import './incidentlist.css';
 

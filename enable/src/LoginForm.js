@@ -51,6 +51,7 @@ const LoginForm = () => {
     toast.success(response);
     setIsLoggedIn(true);
     localStorage.setItem('email',loginData.email)
+    localStorage.setItem('role',loginData.empType)
   } catch (error) {
     console.error(error);
     toast.error('Invalid Credentials');

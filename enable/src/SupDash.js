@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; 
+import Button from '@mui/material/Button';
 import './SupDash.css'; // You can import your CSS styles here
-import Navbar from './Navbar';
+import Navbar from './Navbar.tsx';
 
 const IncidentCircle = ({ count, title, color }) => {
   return (
@@ -26,9 +27,10 @@ const SupDash = () => {
   ];
 
   return (
-    <div className="app-container">
+    <div>
+    <Navbar/>
         <div className='button'>
-            <Link to="/admin/incident_assignment">Incident Assignment</Link>
+        <Button variant="contained" href="/admin/incident_assignment">Incident Assignment</Button>
         </div>
       <div className="circle-row">
         {incidents.map((incident, index) => (
@@ -41,6 +43,7 @@ const SupDash = () => {
         ))}
       </div>
     </div>
+    
   );
 };
 

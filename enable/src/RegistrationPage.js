@@ -1,10 +1,9 @@
-import Navbar from './Navbar';
+import Navbar from './Navbar.tsx';
 import RegistrationForm from './RegistrationForm';
-import './App.css';
 
 function RegistrationPage(){
     return(
-            <div className="app-container">
+            <div>
               <Navbar />
               <div className="content-container">
                 <RegistrationForm />
