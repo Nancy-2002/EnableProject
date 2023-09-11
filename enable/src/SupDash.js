@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'; 
 import Button from '@mui/material/Button';
 import './SupDash.css'; // You can import your CSS styles here
-import Navbar from './Navbar.tsx';
+import Navbar from './Navibar.js';
 
 const IncidentCircle = ({ count, title, color }) => {
   return (
