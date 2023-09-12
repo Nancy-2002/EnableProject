@@ -50,8 +50,8 @@ export default function Navbar() {
             {/* <Button variant="outlined" color="inherit" onClick={handleLogout}>
               Logout
             </Button> */}
-            <Link to="/" class="icon"><LogoutIcon/></Link>
             <Link to={link} class="icon"><HomeIcon/></Link>
+            <Link to="/" class="icon"><LogoutIcon/></Link>
           </Box>
         </Toolbar>
       </AppBar>
