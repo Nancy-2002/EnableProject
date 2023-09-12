@@ -1,11 +1,13 @@
 import React from 'react';
+import './navbar.css';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
+import LogoutIcon from '@mui/icons-material/Logout';
+import HomeIcon from '@mui/icons-material/Home'
 import { Link, useNavigate } from 'react-router-dom';
 
 const role = localStorage.getItem('role');
@@ -48,8 +50,8 @@ export default function Navbar() {
             {/* <Button variant="outlined" color="inherit" onClick={handleLogout}>
               Logout
             </Button> */}
-            <Link to="/">LOGOUT</Link>
-            <Link to={link}>HOME</Link>
+            <Link to="/" class="icon"><LogoutIcon/></Link>
+            <Link to={link} class="icon"><HomeIcon/></Link>
           </Box>
         </Toolbar>
       </AppBar>
