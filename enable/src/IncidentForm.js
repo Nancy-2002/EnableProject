@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { submitIncident } from "./services/userService";
-import Navbar from './Navbar.tsx';
+import Navbar from './Navibar.js';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Container, Typography, Paper, TextField, FormControl, InputLabel, Select, MenuItem, Button, Grid, Box } from '@mui/material';

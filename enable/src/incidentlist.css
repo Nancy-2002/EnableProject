@@ -10,6 +10,17 @@ body, h1, h2, h3, p, ul, li {
     padding: 20px;
   }
   
+  /* Center-align the title */
+div {
+  text-align: center;
+}
+
+/* Make the table header red */
+th {
+  background-color: red;
+  color: white; /* To make the text readable on the red background */
+}
+
   .container {
     max-width: 800px;
     margin: 0 auto;

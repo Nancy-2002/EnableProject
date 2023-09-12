@@ -1,7 +1,7 @@
 import React from 'react';
 import Sidebar from './Sidebar.js';
 import './dashboard.css';
-import Navbar from './Navbar.tsx';
+import Navbar from './Navibar.js';
 import './login.css';
 
 function Dashboard() {

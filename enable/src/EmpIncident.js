@@ -1,198 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { getAssignedIncident, getname } from './services/userService';
 import Axios from 'axios';
-import Navbar from './Navbar.tsx';
-import './EmpIncident.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-const initialIncidentsData = [
-  {
-    id: 1,
-    title: 'Network Outage',
-    status: 'Open',
-    dateCreated: '2023-08-25',
-    priority: 'High',
-    assignedStaff: '',
-    reporter: 'Alice',
-    reporterDate: '2023-08-24',
-    description: 'Users are unable to access the network.',
-  },
-  {
-    id: 13,
-    title: 'Server Crash',
-    status: 'Open',
-    dateCreated: '2023-08-24',
-    priority: 'Medium',
-    assignedStaff: '',
-    reporter: 'Bob',
-    reporterDate: '2023-08-23',
-    description: 'One of the servers crashed unexpectedly.',
-  },
-  {
-    id: 3,
-    title: 'Software Bug',
-    status: 'Closed',
-    dateCreated: '2023-08-23',
-    priority: 'Low',
-    assignedStaff: 'Michael Johnson',
-    reporter: 'Eve',
-    reporterDate: '2023-08-22',
-    description: 'Bug in the software causing unexpected behavior.',
-    resolution: 'Performed a database synchronization and resolved network connectivity issues.',
-    resolutionDate: '2023-08-27',
-  },
-  {
-    id: 4,
-    title: 'Data Loss',
-    status: 'Open',
-    dateCreated: '2023-08-22',
-    priority: 'High',
-    assignedStaff: '',
-    reporter: 'Grace',
-    reporterDate: '2023-08-21',
-    description: 'Critical data loss in the main database.',
-  },
-  {
-    id: 5,
-    title: 'Website Error',
-    status: 'Open',
-    dateCreated: '2023-08-21',
-    priority: 'Medium',
-    assignedStaff: '',
-    reporter: 'Henry',
-    reporterDate: '2023-08-20',
-    description: 'Website showing error 500 for some pages.',
-  },
-
-  {
-    id: 6,
-    title: 'Server Maintenance',
-    status: 'Closed',
-    dateCreated: '2023-08-27',
-    priority: 'Medium',
-    assignedStaff: 'John Doe',
-    reporter: 'Olivia',
-    reporterDate: '2023-08-26',
-    description: 'Scheduled server maintenance is currently ongoing.',
-    resolution: 'Performed a database synchronization and resolved network connectivity issues.',
-    resolutionDate: '2023-08-27',
-  },
-  {
-    id: 7,
-    title: 'Database Upgrade',
-    status: 'Open',
-    dateCreated: '2023-08-28',
-    priority: 'High',
-    assignedStaff: 'Jane Smith',
-    reporter: 'David',
-    reporterDate: '2023-08-27',
-    description: 'Upgrading the main database to improve performance.',
-  },
-  {
-    id: 8,
-    title: 'Security Patch',
-    status: 'Closed',
-    dateCreated: '2023-08-29',
-    priority: 'High',
-    assignedStaff: 'Michael Johnson',
-    reporter: 'Sophia',
-    reporterDate: '2023-08-28',
-    description: 'Applying security patches to address vulnerabilities.',
-    resolution: 'Performed a database synchronization and resolved network connectivity issues.',
-    resolutionDate: '2023-08-27',
-  },
-  {
-    id: 9,
-    title: 'Application Testing',
-    status: 'Open',
-    dateCreated: '2023-08-30',
-    priority: 'Low',
-    assignedStaff: 'Gregory',
-    reporter: 'Emma',
-    reporterDate: '2023-08-29',
-    description: 'Conducting thorough testing of a new application feature.',
-  },
-  {
-    id: 10,
-    title: 'Performance Optimization',
-    status: 'Closed',
-    dateCreated: '2023-08-31',
-    priority: 'Medium',
-    assignedStaff: 'Jessica',
-    reporter: 'Liam',
-    reporterDate: '2023-08-30',
-    description: 'Optimizing code and resources for better performance.',
-    resolution: 'Performed a database synchronization and resolved network connectivity issues.',
-    resolutionDate: '2023-08-27',
-  },
-  {
-    id: 11,
-    title: 'Login Issue',
-    status: 'Closed',
-    dateCreated: '2023-08-25',
-    priority: 'Low',
-    assignedStaff: 'Eleanor',
-    reporter: 'Noah',
-    reporterDate: '2023-08-24',
-    description: 'Users were unable to log in to the application.',
-    resolution: 'Identified and fixed a server configuration issue.',
-    resolutionDate: '2023-08-26',
-  },
-  {
-    id: 12,
-    title: 'Data Sync Problem',
-    status: 'Closed',
-    dateCreated: '2023-08-24',
-    priority: 'Medium',
-    assignedStaff: 'Benjamin',
-    reporter: 'Ava',
-    reporterDate: '2023-08-23',
-    description: 'Data synchronization between servers was failing.',
-    resolution: 'Performed a database synchronization and resolved network connectivity issues.',
-    resolutionDate: '2023-08-27',
-  },
-  {
-    id: 13,
-    title: 'Application Crash',
-    status: 'Closed',
-    dateCreated: '2023-08-23',
-    priority: 'High',
-    assignedStaff: 'Daniel',
-    reporter: 'Mia',
-    reporterDate: '2023-08-22',
-    description: 'The application was crashing on launch.',
-    resolution: 'Identified a memory leak and released a patch to fix it.',
-    resolutionDate: '2023-08-25',
-  },
-  {
-    id: 14,
-    title: 'Broken Link',
-    status: 'Closed',
-    dateCreated: '2023-08-22',
-    priority: 'Medium',
-    assignedStaff: 'Chloe',
-    reporter: 'James',
-    reporterDate: '2023-08-21',
-    description: 'A link on the website was leading to an error page.',
-    resolution: 'Updated the link URL to the correct destination.',
-    resolutionDate: '2023-08-23',
-  },
-  {
-    id: 15,
-    title: 'Performance Degradation',
-    status: 'Closed',
-    dateCreated: '2023-08-21',
-    priority: 'High',
-    assignedStaff: 'William',
-    reporter: 'Harper',
-    reporterDate: '2023-08-20',
-    description: 'The application performance was significantly slower than usual.',
-    resolution: 'Identified and optimized database queries to improve performance.',
-    resolutionDate: '2023-08-24',
-  },
-  // Add more incidents here...
-];
+import { Container, Table, TableBody, TableCell, TableContainer, Typography,TableHead, TableRow, Paper, Select, FormControl, InputLabel, MenuItem, Button, TextareaAutosize, TextField } from '@mui/material';
+import Navbar from './Navibar.js';
+import './EmpIncident.css';
 
 const IncidentTable = () => {
   const [expandedIncidentId, setExpandedIncidentId] = useState(null);
@@ -204,12 +17,11 @@ const IncidentTable = () => {
 
   useEffect(() => {
     // Fetch data from the backend when the component mounts
-    const email = localStorage.getItem('email')
-    console.log(email);
+    const email = localStorage.getItem('email');
+
     async function fetchData() {
       try {
         const name = await getname(email);
-        console.log(name);
         setUserName(name);
 
         const data = await getAssignedIncident(name);
@@ -222,9 +34,10 @@ const IncidentTable = () => {
     fetchData();
   }, [selectedStatus]);
 
-
   const toggleExpand = (incidentId) => {
-    setExpandedIncidentId(expandedIncidentId === incidentId ? null : incidentId);
+    setExpandedIncidentId((prevExpandedIncidentId) =>
+      prevExpandedIncidentId === incidentId ? null : incidentId
+    );
   };
 
   const handleResolutionChange = (event) => {
@@ -258,9 +71,8 @@ const IncidentTable = () => {
       status: 'Closed',
       resolutionDescription: resolutionDescription,
       resolutionDate: resolutionDate,
-      // Add other fields as needed for the update
     };
-  
+
     // Call the updateIncident function to send the PATCH request
     updateIncident(incidentId, updatedIncidentData);
 
@@ -297,110 +109,101 @@ const IncidentTable = () => {
     if (statusComparison !== 0) {
       return statusComparison;
     }
-    
 
     return new Date(a.dateOfIncident) - new Date(b.dateOfIncident);
   });
 
-  const IncidentFilter = ({ selectedStatus, setSelectedStatus }) => {
-    return (
-      <div className="filter-container">
-        <label>
-          <strong>Filter by: </strong>
-        </label>
-        <select value={selectedStatus} onChange={(event) => setSelectedStatus(event.target.value)}>
-          <option value="All">All</option> {/* Added "All" option */}
-          <option value="Open">Open</option>
-          <option value="Closed">Closed</option>
-        </select>
-      </div>
-    );
-  };
-
   return (
-    <div>
-      <IncidentFilter selectedStatus={selectedStatus} setSelectedStatus={setSelectedStatus} />
-      <table>
-        <thead>
-          <tr>
-            <th>Incident title</th>
-            <th>Status</th>
-            <th>Date reported</th>
-            <th>Priority</th>
-            {selectedStatus === 'Closed' && (
-              <>
-                <th>Resolution</th>
-                <th>Resolution Date</th>
-              </>
-            )}
-          </tr>
-        </thead>
-        <tbody>
-          {sortedIncidents.map((incident) => (
-            <React.Fragment key={incident.id}>
-              <tr onClick={() => toggleExpand(incident.id)}>
-                <td>{incident.incidentTitle}</td>
-                <td>{incident.status}</td>
-                <td>{incident.dateOfIncident}</td>
-                <td>
-                  <span className={`priority-indicator ${incident.priority.toLowerCase()}`}>
-                    {incident.priority}
-                  </span>
-                </td>
-                {selectedStatus === 'Closed' && (
-                  <>
-                    <td>{incident.resolutionDescription}</td>
-                    <td>{incident.resolutionDate}</td>
-                  </>
-                )}
-              </tr>
-              {expandedIncidentId === incident.id && (
-                <tr className="expanded-row">
-                  <td colSpan="6">
-                    <div className="incident-details">
-                      <p>
-                        <b>Reporter: </b>
-                        {incident.assignedTo}
-                      </p>
-                      <p>
-                        <b>Date Created: </b>
-                        {incident.dateOfIncident}
-                      </p>
-                      <p>
-                        <b>Description: </b>
-                        {incident.incidentDescription}
-                      </p>
-                      {incident.status === 'In Progress' && (
-                        <div className="complete-section">
-                          <label>
-                            <strong>Resolution: </strong>
-                          </label>
-                          <textarea
-                            rows="3"
-                            value={resolutionDescription}
-                            onChange={handleResolutionChange}
-                            placeholder="Enter resolution"
-                          />
-                          <label>
-                            <strong>Resolution Date: </strong>
-                          </label>
-                          <input
-                            type="date"
-                            value={resolutionDate}
-                            onChange={handleResolutionDateChange}
-                          />
-                          <button onClick={() => completeIncident(incident.id)}>Complete</button>
-                        </div>
-                      )}
-                    </div>
-                  </td>
-                </tr>
+    <Container>
+      <Typography variant="h4" style={{ textAlign: 'center', marginTop: '1.5em' }}>
+        Reported Incidents
+      </Typography>
+      <FormControl>
+        <Select value={selectedStatus} onChange={(event) => setSelectedStatus(event.target.value)}>
+          <MenuItem value="All">All</MenuItem>
+          <MenuItem value="Open">Open</MenuItem>
+          <MenuItem value="Closed">Closed</MenuItem>
+        </Select>
+      </FormControl>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell sx={{ fontSize: '1.1rem',fontWeight: 'bold' }}>Incident title</TableCell>
+              <TableCell sx={{ fontSize: '1.1rem',fontWeight: 'bold' }}>Status</TableCell>
+              <TableCell sx={{ fontSize: '1.1rem',fontWeight: 'bold' }}>Date reported</TableCell>
+              <TableCell sx={{ fontSize: '1.1rem',fontWeight: 'bold' }}>Priority</TableCell>
+              {selectedStatus === 'Closed' && (
+                <>
+                  <TableCell sx={{ fontSize: '1.1rem',fontWeight: 'bold' }}>Resolution</TableCell>
+                  <TableCell sx={{ fontSize: '1.1rem',fontWeight: 'bold' }}>Resolution Date</TableCell>
+                </>
               )}
-            </React.Fragment>
-          ))}
-        </tbody>
-      </table>
-    </div>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {sortedIncidents.map((incident) => (
+              <React.Fragment key={incident.id}>
+                <TableRow onClick={() => toggleExpand(incident.id)}>
+                  <TableCell>{incident.incidentTitle}</TableCell>
+                  <TableCell>{incident.status}</TableCell>
+                  <TableCell>{incident.dateOfIncident}</TableCell>
+                  <TableCell>
+                    <span className={`priority-indicator ${incident.priority.toLowerCase()}`}>
+                      {incident.priority}
+                    </span>
+                  </TableCell>
+                  {selectedStatus === 'Closed' && (
+                    <>
+                      <TableCell>{incident.resolutionDescription}</TableCell>
+                      <TableCell>{incident.resolutionDate}</TableCell>
+                    </>
+                  )}
+                </TableRow>
+                {expandedIncidentId === incident.id && (
+                  <TableRow className="expanded-row">
+                    <TableCell colSpan="6">
+                      <div className="incident-details">
+                        <p>
+                          <b>Reporter: </b>
+                          {incident.assignedTo}
+                        </p>
+                        <p>
+                          <b>Date Created: </b>
+                          {incident.dateOfIncident}
+                        </p>
+                        <p>
+                          <b>Description: </b>
+                          {incident.incidentDescription}
+                        </p>
+                        {incident.status === 'In Progress' && (
+                          <div className="complete-section">
+                            <InputLabel>Resolution:</InputLabel>
+                            <TextareaAutosize
+                              rowsMin={3}
+                              value={resolutionDescription}
+                              onChange={handleResolutionChange}
+                              placeholder="Enter resolution"
+                            />
+                            <InputLabel>Resolution Date:</InputLabel>
+                            <TextField
+                              type="date"
+                              value={resolutionDate}
+                              onChange={handleResolutionDateChange}
+                            />
+                            <Button onClick={() => completeIncident(incident.id)}>Complete</Button>
+                          </div>
+                        )}
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                )}
+              </React.Fragment>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Container>
   );
 };
 
@@ -408,10 +211,9 @@ const Incident = () => {
   return (
     <div className='navbar'>
       <Navbar />
-      <div className="container">
-        <h1 className="page-heading">Reported Incidents</h1>
+      <Container>
         <IncidentTable />
-      </div>
+      </Container>
     </div>
   );
 };
