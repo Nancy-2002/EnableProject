@@ -1,5 +1,4 @@
 import React from 'react';
-import Sidebar from './Sidebar.js';
 import './dashboard.css';
 import Navbar from './Navibar.js';
 import './login.css';
@@ -12,7 +11,7 @@ function Dashboard() {
     <div>
        <Navbar />
                     
-                    <Sidebar />
+                     
     <div className="content-center">
       <h1>Welcome to Dashboard!</h1>
       <p>Welcome, {email}!</p>
